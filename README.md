@@ -1,3 +1,3 @@
 # Cpp_Insights
-**Four Stages of compilation
-**Class Relationships Explained using UML
+**Four Stages of compilation**
+**Class Relationships Explained using UML**
