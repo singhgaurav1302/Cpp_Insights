@@ -157,5 +157,7 @@ https://vaughnvernon.co/?page_id=31
 
 http://stackoverflow.com/questions/11881552/implementation-difference-between-aggregation-and-composition-in-java
 
+https://stackoverflow.com/a/32771815/2045438
+
 
 
