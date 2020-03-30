@@ -38,18 +38,18 @@ void FuncArrayDeleter(Base* p) {
 
 int main() {
     ////unique_ptr with C-style arrays
-    //auto ptr1 = std::make_unique<Base[]>(3, "hello");
-    //std::unique_ptr<Base[]> ptr2(new Base[2]{Base("hello"), Base("world")});
+    auto ptr1 = std::make_unique<Base[]>(3);            //It does not allow passing param to Ctor in case of arrays
+    std::unique_ptr<Base[]> ptr2(new Base[2]{Base("hello"), Base("world")});
     //auto ptr3 = std::make_unique<Base[3]>(3);         //Error: Base[3] not allowed function deleted. Array of known bound not allowed
 
     //auto ptr4 = std::make_unique<Base>();
     ////Function Object Deleter does not add up to pointer memory
-    std::unique_ptr<Base, CustomDeleter> ptr5(new Base);
-    std::cout << "Size of unique_ptr with function object: " << sizeof(ptr5) << std::endl;
+    //std::unique_ptr<Base, CustomDeleter> ptr5(new Base);
+    //std::cout << "Size of unique_ptr with function object: " << sizeof(ptr5) << std::endl;
     
     ////Haveing C-Style function deleters increses unique_ptr size
-    std::unique_ptr<Base, decltype(&FuncDeleter)> ptr6(new Base, &FuncDeleter);
-    std::cout << "Size of unique_ptr with function: " << sizeof(ptr6) << std::endl;
+    //std::unique_ptr<Base, decltype(&FuncDeleter)> ptr6(new Base, &FuncDeleter);
+    //std::cout << "Size of unique_ptr with function: " << sizeof(ptr6) << std::endl;
     //std::unique_ptr<Base, decltype(FuncDeleter)*> ptr7(new Base, FuncDeleter);
     //std::unique_ptr<Base, void (*)(Base*)> ptr8(new Base, FuncDeleter);
     //std::unique_ptr<Base, void (*)(Base*)> ptr9(new Base, [](Base* p){ std::cout << "lamda \n"; delete p; });
@@ -61,6 +61,6 @@ int main() {
     //ptr12.reset(new Base("second string"));
     
     ////make_unique does not support Custome deleters, as internally it uses new to allocate memory
-    ///so it uses delete to dealloacte, so it does not provide any way to give custome DELETER
+    ////so it uses delete to dealloacte, so it does not provide any way to give custome DELETER
     //auto ptr14 = std::make_unique<Base>();
 }
